@@ -13,7 +13,7 @@
     <link href="{{ URL::asset('style.css') }}" rel="stylesheet">
 
    
- 
+
 
 </head>
 
