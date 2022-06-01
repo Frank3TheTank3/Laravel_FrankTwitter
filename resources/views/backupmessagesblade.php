@@ -5,146 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
     <title>FrankE Twitter</title>
+    {{-- <link href="{{ URL::asset('style3.css') }}" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
-<style>
-    body {
-        text-align: center;
-        background-image: url('../img/twi.jpg');
-        color: aliceblue;
-        display: block;
 
-    }
-
-    .cont {
-        background-color: #fff;
-        width: 350px;
-        justify-content: center;
-    }
-
-    .center {
-        margin: 0 auto;
-
-    }
-
-    h2 {
-        color: black;
-    }
-
-    button {
-
-        background-color: rgb(12, 148, 21);
-        color: #fff;
-    }
-
-    .details {
-        background-color: rgb(0, 76, 162);
-        width: 250px;
-        display: inline-block;
-        text-align: center;
-        margin: 2%;
-        border: 2px solid #000;
-        border-radius: 15px;
-    }
-
-    .title a {
-        color: #fff;
-    }
-
-    .title {
-        background-color: rgb(0, 76, 162);
-        width: 250px;
-        display: inline-block;
-        text-align: center;
-        border: 2px solid #fff;
-        border-radius: 15px;
-        color: #fff;
-    }
-
-    .message {
-        background-color: rgb(0, 76, 162);
-        width: 250px;
-        display: inline-block;
-        text-align: center;
-        margin: 2%;
-        border: 2px solid #000;
-        border-radius: 15px;
-    }
-
-    li {
-        list-style-type: none;
-    }
-
-    .hero {
-        height: 350px;
-        /*background-color: rgb(23, 103, 172);*/
-
-        background-image: url("assets/bg.jpg");
-        background-size: cover
-    }
-
-    .card {
-        background-color: darkgrey;
-        height: 250px;
-    }
-
-    .shaded{
-        background-color: rgb(235, 239, 245);
-        padding: 20px;
-    }
-
-    .txtblue{
-        color: rgb(0, 128, 255)
-    }
-
-    .btntweet{
-        background-color: rgb(216, 216, 216);
-        color: black;
-    }
-
-    ul {
-  display: inline-flex;
-  align-items: start;
-  list-style-type: none;
-}
-ul li {
-  padding: 6px 0;
-  margin: 20px;
-  width: 250px;
-}
-ul li a {
-  position: relative;
-  display: block;
-  text-decoration: none;
-  font-family: "Lato";
-  font-size: 1rem;;
-  color: #000000;
-  padding: 4px 0;
-  transition: 0.5s;
-}
-ul li a::after {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 3px;
-  top: 100%;
-  left: 0;
-  background: #ff7000;
-  transition: transform 0.5s;
-  transform: scaleX(0);
-  transform-origin: right;
-}
-ul li a:hover {
-  color: #95a5a6;
-}
-ul li a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-</style>
 
 <body>
 
@@ -228,7 +95,7 @@ ul li a:hover::after {
             <div class="p-2 bg-light border">
                 <a href="/">Back To Main Page</a>
             </div>
-            <div class="p-2 bg-light border">
+            <div class="p-2 bg-light border rounded-pill">
                 <h2>Say something: </h2>
 
                 <form action="/create" method="post">
@@ -237,7 +104,7 @@ ul li a:hover::after {
                     <!-- this blade directive is necessary for all form posts somewhere in between
                     the form tags -->
                     @csrf
-                    <button type="submit">Submit</button>
+                    <button class="rounded-pill"type="submit">Submit</button>
                 </form>
             </div>
 
@@ -261,11 +128,20 @@ ul li a:hover::after {
                     {{ $message->content }}<br>
                
                     <div class="d-flex m-4">
-                    {{ $message->created_at->diffForHumans() }}
+                    {{ $message->updated_at->diffForHumans() }}
                     <form action="/message/{{ $message->id }}" method="post">
                         @csrf
                         @method('delete')
                         <button type="submit">Delete</button>
+                    </form>
+                    <form action="/message/{{ $message->id }}" method="post">
+                        @csrf
+                        @method('get')
+                        <button type="submit">Edit</button>
+                    </form>
+                    <form action="/message/{{ $message->id }}" method="post">
+                        @csrf
+                        <button type="submit">Delete Content</button>
                     </form>
                 </div>
                 </div>

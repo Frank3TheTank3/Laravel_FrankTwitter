@@ -20,8 +20,16 @@ Route::get('/messages', function () {
     return view('messages'); 
 });
 */
+
+
+// Route::resources([
+//     'messages' => MessageController::class,
+//     'message' => MessageController::class,
+//     'edit' => MessageController::class,
+// ]);
+
 Route::get('', [StudentController::class, 'showAll']);
-//Route::delete('{id}', [StudentController::class, 'delete']);
+Route::delete('{id}', [StudentController::class, 'delete']);
 
 Route::get('/messages', [MessageController::class, 'showAll']);
 Route::get('/message/{id}', [MessageController::class, 'details']);
