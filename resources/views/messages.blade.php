@@ -127,7 +127,7 @@
                     {{ $message->content }}<br>
                
                     <div class="d-flex m-4">
-                    {{ $message->created_at->diffForHumans() }}
+                    {{ $message->updated_at->diffForHumans() }}
                     <form action="/message/{{ $message->id }}" method="post">
                         @csrf
                         @method('delete')
@@ -137,6 +137,10 @@
                         @csrf
                         @method('get')
                         <button type="submit">Edit</button>
+                    </form>
+                    <form action="/message/{{ $message->id }}" method="post">
+                        @csrf
+                        <button type="submit">Delete Content</button>
                     </form>
                 </div>
                 </div>

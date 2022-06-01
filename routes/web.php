@@ -27,7 +27,11 @@ Route::get('/messages', [MessageController::class, 'showAll']);
 Route::get('/message/{id}', [MessageController::class, 'details']);
 Route::post('/create', [MessageController::class, 'create']);
 Route::delete('/message/{id}', [MessageController::class, 'delete']);
+
+Route::post('/message/{id}', [MessageController::class, 'deleteContent']);
+
 Route::post('/edit/{id}', [MessageController::class, 'edit']);
+
 Route::get('/test', function () {
     return view('test'); 
 });
