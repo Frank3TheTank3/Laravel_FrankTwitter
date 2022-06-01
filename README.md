@@ -1,3 +1,29 @@
+
+<h1>Frank Twitter</h1>
+
+## About Frank Twitter
+
+
+Frank Twitter is a test project for using Laravel, a PHP Framework, that is used to create SPA. This project has following features:
+
+- A main landing page describing our group work for our laravel presentation
+- Write a title and message for your tweet
+- Delete your tweet
+- Click on a tweet to discover the message details
+- Edit your tweet
+
+Features that could be added in the future:
+
+
+- Registration & User-Login on landing page
+- Page for choosing a Nickname & Profile Photo
+- Ways of displaying other users / posts / images on the page to follow
+- A page for displaying random user tweets (Main scroll page)
+
+
+<h1>This test web app was built with:</h1>
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
