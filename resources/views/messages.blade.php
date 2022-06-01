@@ -135,7 +135,7 @@
                     </form>
                     <form action="/message/{{ $message->id }}" method="post">
                         @csrf
-                        @method('details')
+                        @method('get')
                         <button type="submit">Edit</button>
                     </form>
                 </div>

@@ -29,6 +29,24 @@ class MessageController extends Controller
         
     }
 
+    public function edit(Request $request) {
+ 
+        // we create a new Message-Object
+        $message = Message::find($request->id);
+        // we set the properties title and content
+        // with the values that we got in the post-request
+        $message->title = $request->title;
+        $message->content = $request->content;
+   
+        // we save the new Message-Object in the messages
+        // table in our database
+        $message->save();
+   
+        // at the end we make a redirect to the url /messages
+        return redirect('/messages');        
+        
+    }
+
     public function details($id) {
  
         // ask the database for the message with the ID that we got
