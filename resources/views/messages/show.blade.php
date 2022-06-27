@@ -12,12 +12,13 @@ messages.blade.php) -->
 <div class="p-2 bg-light border rounded-pill">
     <h2>Edit Message: </h2>
 
-    <form action="/edit/{{$message->id}}" method="post">
+    <form action="/messages/{{$message->id}}" method="post">
         <input type="text" name="title" value="{{$message->title}}">
         <input type="text" name="content" value="{{$message->content}}">
         <!-- this blade directive is necessary for all form posts somewhere in between
         the form tags -->
         @csrf
+        @method('put')
         <button class="rounded-pill"type="submit">Confirm</button>
     </form>
 </div>

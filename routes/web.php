@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessageController;
-use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,31 +14,16 @@ use App\Http\Controllers\StudentController;
 |
 */
 
-/* 
-Route::get('/messages', function () {
-    return view('messages'); 
+Route::get('/', function() {
+    return redirect('/messages');
 });
-*/
 
+Route::post('messages/deletecontent/{id}', [MessageController::class, 'deletecontent']);
 
-// Route::resources([
-//     'messages' => MessageController::class,
-//     'message' => MessageController::class,
-//     'edit' => MessageController::class,
-// ]);
+Route::resources([
+    'messages' => MessageController::class
+]);
 
-Route::get('', [StudentController::class, 'showAll']);
-Route::delete('{id}', [StudentController::class, 'delete']);
-
-Route::get('/messages', [MessageController::class, 'showAll']);
-Route::get('/message/{id}', [MessageController::class, 'details']);
-Route::post('/create', [MessageController::class, 'create']);
-Route::delete('/message/{id}', [MessageController::class, 'delete']);
-
-Route::post('/message/{id}', [MessageController::class, 'deleteContent']);
-
-Route::post('/edit/{id}', [MessageController::class, 'edit']);
-
-Route::get('/test', function () {
-    return view('test'); 
-});
+// Route::post('/create', [MessageController::class, 'create']);
+// Route::delete('/message/{id}', [MessageController::class, 'delete']);
+// Route::get('/test', function () {return view('test');});

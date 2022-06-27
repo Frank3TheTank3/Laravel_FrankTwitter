@@ -6,56 +6,72 @@ use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
-   
-    
-    public function showAll() {
+    public function index()
+    {
         $messages = Message::all()->sortByDesc('created_at');
-        return view('messages', ['messages' => $messages]);
+        return view('messages.index', ['messages' => $messages]);
     }
 
+
+
     public function create(Request $request) {
- 
+
         $message = new Message();
         $message->title = $request->title;
         $message->content = $request->content;
         $message->save();
-        return redirect('/messages');        
-        
+        return redirect('/messages');
+
     }
 
-    public function edit(Request $request) {
- 
-        $message = Message::find($request->id);
+
+    public function store(Request $request) {
+
+        $message = new Message();
         $message->title = $request->title;
         $message->content = $request->content;
         $message->save();
-        return redirect('/messages');        
-        
+        return redirect('/messages');
+
     }
 
-    public function details($id) {
-        $message = Message::findOrFail($id);  
-        return view('messageDetails', ['message' => $message]);
-    }
- 
-    public function delete($id) {
- 
-      
-        $result = Message::findOrFail($id)->delete(); 
-        return redirect('/messages');        
-    } 
- 
-    public function deleteContent(Request $request) {
- 
-        $message = Message::find($request->id);
-        $message->content = "";
-   
+
+    public function update(Request $request, $id) {
+
+        $message = Message::find($id);
+        $message->title = $request->title;
+        $message->content = $request->content;
         $message->save();
-   
-        return redirect('/messages');        
-    } 
- 
- 
-    
+        return redirect('/messages');
+
+    }
+
+    public function show($id)
+    {
+        $message = Message::findOrFail($id);
+        return view('messages.show', ['message' => $message]);
+    }
+
+
+
+    public function destroy($id) {
+
+
+        $result = Message::findOrFail($id)->delete();
+        return redirect('/messages');
+    }
+
+    public function deletecontent($id) {
+
+        $message = Message::find($id);
+        $message->content = "";
+
+        $message->save();
+
+        return redirect('/messages');
+    }
+
+
+
 }
 
